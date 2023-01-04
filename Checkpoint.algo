@@ -24,7 +24,7 @@ VAR
     tab:ARRAY_OF_INTEGER[]:= [12,13,6,10]; 
     tab1:ARRAY_OF_INTEGER[]:= [13,10,16,15];
     h:HASH_TABLE<INTEGER,INTEGER>;
-    sum:=0;
+    sum:INTEGER:=0;
 BEGIN
     FOR i FROM 1 TO tab.length STEP 1  DO
         h.insert(tab[i],1);
@@ -49,7 +49,7 @@ VAR
     tab:ARRAY_OF_INTEGER[]:= [3, 1, 7, 9]; 
     tab1:ARRAY_OF_INTEGER[]:= [2, 4, 1, 9, 3];
     h:HASH_TABLE<INTEGER,INTEGER>;
-    sum:=0;
+    sum:INTEGER:=0;
 BEGIN
     FOR i FROM 1 TO tab.length STEP 1  DO
         h.insert(tab[i],1);
@@ -72,4 +72,33 @@ BEGIN
 END
 
 ----------------------------------------------------------------------------
-
+ALGORITHM DistinctNbr
+VAR
+    tab:ARRAY_OF_INTEGER[]:= [3, 1, 7, 9]; 
+    tab1:ARRAY_OF_INTEGER[]:= [2, 4, 1, 9, 3];
+    sum:INTEGER:=0;
+    check:=FALSE;
+BEGIN
+    FOR i FROM 1 TO tab STEP 1  DO
+      check:=FALSE;
+        FOR j FROM 1 TO tab1 STEP 1  DO
+            IF (tab[i]=tab1[j]) THEN
+                check:=TRUE;
+            END_IF
+        END_FOR
+        IF (check=FALSE) THEN
+            sum:=sum+tab[i]
+        END_IF
+    END_FOR
+    FOR i FROM 1 TO tab1 STEP 1  DO
+      check:=FALSE;
+        FOR j FROM 1 TO tab2 STEP 1  DO
+            IF (tab1[i]=tab[j]) THEN
+                check:=TRUE;
+            END_IF
+        END_FOR
+        IF (check=FALSE) THEN
+            sum:=sum+tab1[i]
+        END_IF
+    END_FOR
+END
